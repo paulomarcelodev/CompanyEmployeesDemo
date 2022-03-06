@@ -2,8 +2,10 @@ using CompanyEmployees.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIssIntegration();
+builder.Services.ConfigureLoggerService(builder.Environment);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,7 +22,7 @@ else
 }
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseForwardedHeaders(new()
+app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.All
 });
