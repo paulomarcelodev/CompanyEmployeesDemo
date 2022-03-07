@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Entities\Entities.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Configurations\CompanyConfiguration\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Configurations\CompanyConfiguration\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Configurations\CompanyConfiguration\**" />
+    </ItemGroup>
+
+</Project>
