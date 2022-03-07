@@ -3,14 +3,15 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.ConfigureCors();
-builder.Services.ConfigureIssIntegration();
-builder.Services.ConfigureLoggerService(builder.Environment);
-builder.Services.ConfigureRepositoryManager();
-builder.Services.ConfigureServiceManager();
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureCors()
+    .ConfigureIssIntegration()
+    .ConfigureLoggerService(builder.Environment)
+    .ConfigureSqlContext(builder.Configuration)
+    .ConfigureRepositoryManager()
+    .ConfigureServiceManager()
+    .AddControllers().Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

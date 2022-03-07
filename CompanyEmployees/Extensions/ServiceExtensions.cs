@@ -1,5 +1,6 @@
 using Contracts;
 using LoggerService;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using Repository;
 using Service;
@@ -31,4 +32,7 @@ public static class ServiceExtensions
         services.AddScoped<IRepositoryManager, RepositoryManager>();
     public static IServiceCollection ConfigureServiceManager(this IServiceCollection services) =>
         services.AddScoped<IServiceManager, ServiceManager>();
+    public static IServiceCollection
+        ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
+            services.AddSqlServer<RepositoryContext>(configuration.GetConnectionString("sqlConnection"));
 }
