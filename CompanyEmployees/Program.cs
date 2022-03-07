@@ -9,7 +9,9 @@ builder.Services.ConfigureCors()
     .ConfigureSqlContext(builder.Configuration)
     .ConfigureRepositoryManager()
     .ConfigureServiceManager()
-    .AddControllers().Services
+    .AddAutoMapper(typeof(Program))
+    .AddControllers()
+    .AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly).Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen();
 
