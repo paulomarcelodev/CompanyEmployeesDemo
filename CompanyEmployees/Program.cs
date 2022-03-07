@@ -7,6 +7,7 @@ builder.Services.ConfigureCors();
 builder.Services.ConfigureIssIntegration();
 builder.Services.ConfigureLoggerService(builder.Environment);
 builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureServiceManager();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

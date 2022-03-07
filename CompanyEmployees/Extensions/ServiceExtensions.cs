@@ -1,6 +1,9 @@
 using Contracts;
 using LoggerService;
 using NLog;
+using Repository;
+using Service;
+using Service.Contracts;
 
 namespace CompanyEmployees.Extensions;
 
@@ -15,10 +18,7 @@ public static class ServiceExtensions
                 .AllowAnyHeader());
         });
     public static IServiceCollection ConfigureIssIntegration(this IServiceCollection services) =>
-        services.Configure<IISOptions>(options =>
-        {
-
-        });
+        services.Configure<IISOptions>(options => { });
     public static IServiceCollection ConfigureLoggerService(this IServiceCollection services, IWebHostEnvironment environment)
     {
         LogManager.LoadConfiguration(
@@ -27,7 +27,8 @@ public static class ServiceExtensions
         );
         return services.AddSingleton<ILoggerManager, LoggerManager>();
     }
-
     public static IServiceCollection ConfigureRepositoryManager(this IServiceCollection services) =>
-        services.AddScoped<IRepositoryManager, IRepositoryManager>();
+        services.AddScoped<IRepositoryManager, RepositoryManager>();
+    public static IServiceCollection ConfigureServiceManager(this IServiceCollection services) =>
+        services.AddScoped<IServiceManager, ServiceManager>();
 }
